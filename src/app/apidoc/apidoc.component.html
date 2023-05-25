@@ -1,0 +1,59 @@
+<div class="container">
+    <table *ngFor="let data of dataFromServer;let i =index" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Api No: </th>
+                <th colspan="2">{{data.api_no}}{{i+1}}</th>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <th colspan="2">{{data.title}}</th>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <th colspan="2">{{data.desc}}</th>
+            </tr>
+            <tr>
+                <th>Method</th>
+                <th colspan="2">{{data.method}}</th>
+            </tr>
+            <tr>
+                <th>URL</th>
+                <th colspan="2">{{data.url}}</th>
+            </tr>
+            <tr>
+                <th>URL Params</th>
+                <td colspan="2" [innerHTML]="getSubTable(data.url_parmas)"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Headers</th>
+                <td colspan="2" [innerHTML]="getSubTable(data.headers)">
+                </td>
+            </tr>
+            <tr>
+                <th>Request Body</th>
+                <td colspan="2">
+                    <pre>{{getJsonBody(data.request_body)}}</pre>
+                </td>
+            </tr>
+            <tr>
+                <th>Response Body (Success)</th>
+                <td colspan="2">
+                    <p>
+                        On successful response user will get success message as example below.
+                    </p>
+                    <pre>{{getJsonBody(data.response_body)}}</pre>
+                </td>
+            </tr>
+            <tr>
+                <th>Response Body (Error)</th>
+                <td colspan="2">
+                    <p>500 Internal Server error</p>
+                    <pre>{{getJsonBody(data.response_error)}}</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
